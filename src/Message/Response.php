@@ -17,13 +17,9 @@ class Response extends AbstractResponse implements RedirectResponseInterface
     {
         $this->request = $request;
 
-        // we only care about the content of the soap:Body element
-        $responseDom = new DOMDocument;
-        $responseDom->loadXML($data);
-        $this->data = simplexml_import_dom($responseDom->documentElement->firstChild->firstChild);
+        $this->data = json_decode($data);
 
-        $resultElement = $this->getResultElement();
-        if (!isset($resultElement->StatusCode)) {
+        if (!isset($this->data) || !isset($this->data->code)) {
             throw new InvalidResponseException;
         }
     }

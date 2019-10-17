@@ -23,6 +23,7 @@ class Gateway extends AbstractGateway
         return array(
             'merchantId' => '',
             'password' => '',
+            'preSharedKey' => ''
         );
     }
 
@@ -46,6 +47,46 @@ class Gateway extends AbstractGateway
         return $this->setParameter('password', $value);
     }
 
+    public function getCurrencyCode()
+    {
+        return $this->getParameter('currencyCode');
+    }
+
+    public function setCurrencyCode($value)
+    {
+        return $this->setParameter('currencyCode', $value);
+    }
+
+    public function getAmount()
+    {
+        return $this->getParameter('amount');
+    }
+
+    public function setAmount($value)
+    {
+        return $this->setParameter('amount', $value);
+    }
+
+    public function getTransactionType()
+    {
+        return $this->getParameter('transactionType');
+    }
+
+    public function setTransactionType($value)
+    {
+        return $this->setParameter('transactionType', $value);
+    }
+
+    public function getOrderId()
+    {
+        return $this->getParameter('orderId');
+    }
+
+    public function setOrderId($value)
+    {
+        return $this->setParameter('orderId', $value);
+    }
+
     public function purchase(array $parameters = array())
     {
         return $this->createRequest('\Coatesap\PaymentSense\Message\PurchaseRequest', $parameters);
@@ -54,5 +95,10 @@ class Gateway extends AbstractGateway
     public function completePurchase(array $parameters = array())
     {
         return $this->createRequest('\Coatesap\PaymentSense\Message\CompletePurchaseRequest', $parameters);
+    }
+
+    public function generatePaymentToken(array $parameters = [])
+    {
+        return $this->createRequest('\Coatesap\PaymentSense\Message\GenerateTokenRequest', $parameters);
     }
 }
