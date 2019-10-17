@@ -90,8 +90,6 @@ class GenerateTokenRequest extends AbstractRequest
             'preSharedKey' => $this->getPreSharedKey()
         ];
 
-        $data['preSharedKey'] = "ECUKLR5CPgP4HEJ0qiu+9vEQpXy8SrPI71vaFYfnmj4lCnEdgNo=";
-
         return $data;
     }
 

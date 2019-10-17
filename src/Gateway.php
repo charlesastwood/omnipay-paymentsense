@@ -47,6 +47,16 @@ class Gateway extends AbstractGateway
         return $this->setParameter('password', $value);
     }
 
+    public function getPreSharedKey()
+    {
+        return $this->getParameter('preSharedKey');
+    }
+
+    public function setPreSharedKey($value)
+    {
+        return $this->setParameter('preSharedKey', $value);
+    }
+
     public function getCurrencyCode()
     {
         return $this->getParameter('currencyCode');
