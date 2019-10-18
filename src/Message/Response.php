@@ -19,7 +19,7 @@ class Response extends AbstractResponse implements RedirectResponseInterface
 
         $this->data = json_decode($data);
 
-        if (!isset($this->data) || !isset($this->data->code)) {
+        if (!isset($this->data) || empty($this->data)) {
             throw new InvalidResponseException;
         }
     }
@@ -49,6 +49,11 @@ class Response extends AbstractResponse implements RedirectResponseInterface
     public function getMessage()
     {
         return (string) $this->getResultElement()->Message;
+    }
+
+    public function getData()
+    {
+        return $this->data;
     }
 
     public function getRedirectUrl()

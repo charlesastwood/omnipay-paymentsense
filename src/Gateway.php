@@ -23,7 +23,8 @@ class Gateway extends AbstractGateway
         return array(
             'merchantId' => '',
             'password' => '',
-            'preSharedKey' => ''
+            'preSharedKey' => '',
+            'JWTToken' => ''
         );
     }
 
@@ -95,6 +96,16 @@ class Gateway extends AbstractGateway
     public function setOrderId($value)
     {
         return $this->setParameter('orderId', $value);
+    }
+
+    public function getJWTToken()
+    {
+        return $this->getParameter('JWTToken');
+    }
+
+    public function setJWTToken($value)
+    {
+        return $this->setParameter('JWTToken', $value);
     }
 
     public function purchase(array $parameters = array())

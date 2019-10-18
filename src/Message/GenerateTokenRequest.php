@@ -78,6 +78,16 @@ class GenerateTokenRequest extends AbstractRequest
         return $this->setParameter('preSharedKey', $value);
     }
 
+    public function getJWTToken()
+    {
+        return $this->getParameter('JWTToken');
+    }
+
+    public function setJWTToken($value)
+    {
+        return $this->setParameter('JWTToken', $value);
+    }
+
     public function getData()
     {
         $data = [
@@ -87,7 +97,6 @@ class GenerateTokenRequest extends AbstractRequest
             'amount' => $this->getAmount(),
             'transactionType' => $this->getTransactionType(),
             'orderId' => $this->getOrderId(),
-            'preSharedKey' => $this->getPreSharedKey()
         ];
 
         return $data;
@@ -96,12 +105,16 @@ class GenerateTokenRequest extends AbstractRequest
     public function sendData($data)
     {
         $headers = [
-
+            'Authorization' => "{$this->getJWTToken()}",
+            'Content-Type' => 'application/json',
+            'accept' => 'application/json',
         ];
 
-        $body = http_build_query($data, '', '&') ?? null;
-        dump($body, $data);
-        $httpResponse = $this->httpClient->request('post', $this->endpoint, $headers, $body);
+        foreach ($data as $di => $d) {
+            $data[$di] = (string) $d;
+        }
+
+        $httpResponse = $this->httpClient->request('POST', $this->endpoint, $headers, json_encode($data));
 
         return $this->response = new Response($this, $httpResponse->getBody()->getContents(), $httpResponse->getHeaders());
     }
