@@ -1,12 +1,14 @@
 <?php
 
+
 namespace Coatesap\PaymentSense\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
 
 class GenerateTokenRequest extends AbstractRequest
 {
-    protected $endpoint = "https://e.test.connect.paymentsense.cloud/v1/access-tokens";
+    protected $testEndpoint = "https://e.test.connect.paymentsense.cloud/v1/access-tokens";
+    protected $liveEndpoint = "https://e.connect.paymentsense.cloud/v1/access-tokens";
 
     public function getMerchantId()
     {
@@ -114,7 +116,13 @@ class GenerateTokenRequest extends AbstractRequest
             $data[$di] = (string) $d;
         }
 
-        $httpResponse = $this->httpClient->request('POST', $this->endpoint, $headers, json_encode($data));
+        if ($this->getParameter('testMode')) {
+            $endpoint = $this->testEndpoint;
+        } else {
+            $endpoint = $this->liveEndpoint;
+        }
+
+        $httpResponse = $this->httpClient->request('POST', $endpoint, $headers, json_encode($data));
 
         return $this->response = new Response($this, $httpResponse->getBody()->getContents(), $httpResponse->getHeaders());
     }
