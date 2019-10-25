@@ -24,7 +24,7 @@
         "psr-4": { "Coatesap\\PaymentSense\\" : "src/" }
     },
     "require": {
-        "omnipay/common": "2.*"
+        "omnipay/common": "3.*"
     },
     "require-dev": {
         "guzzle/plugin-mock": "~3.1",
