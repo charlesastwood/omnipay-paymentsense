@@ -18,7 +18,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "charlesastwood/omnipay-paymentsense": "^3.0"
+        "charlesastwood/omnipay-paymentsense": "^1.0"
     }
 }
 ```
