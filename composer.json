@@ -1,0 +1,39 @@
+{
+    "name": "charlesastwood/omnipay-paymentsense",
+    "type": "library",
+    "description": "PaymentSense driver for the Omnipay payment processing library",
+    "keywords": [
+        "payment sense",
+        "paymentsense",
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment",
+        "driver"
+    ],
+    "homepage": "https://github.com/charlesastwood/omnipay-paymentsense",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Charles Astwood",
+            "email": "charles@medialam.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Medialam\\PaymentSense\\" : "src/" }
+    },
+    "require": {
+        "omnipay/common": "3.*",
+        "ext-simplexml": "*"
+    },
+    "require-dev": {
+        "guzzle/plugin-mock": "~3.1",
+        "mockery/mockery": "~0.8",
+        "omnipay/tests": "2.*",
+        "phpunit/phpunit": "~3.7.16",
+        "squizlabs/php_codesniffer": "~1.4.4"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
