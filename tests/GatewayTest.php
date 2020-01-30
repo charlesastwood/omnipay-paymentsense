@@ -1,6 +1,6 @@
 <?php
 
-namespace Coatesap\PaymentSense;
+namespace Medialam\PaymentSense;
 
 use DateInterval;
 use DateTime;
@@ -38,7 +38,7 @@ class GatewayTest extends GatewayTestCase
 
         $response = $this->gateway->purchase($this->options)->send();
 
-        $this->assertInstanceOf('\Coatesap\PaymentSense\Message\Response', $response);
+        $this->assertInstanceOf('\Medialam\PaymentSense\Message\Response', $response);
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals('130215141054377801316798', $response->getTransactionReference());
     }

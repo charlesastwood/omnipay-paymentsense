@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Coatesap\PaymentSense\Message;
+namespace Medialam\PaymentSense\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
 

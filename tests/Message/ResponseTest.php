@@ -1,6 +1,6 @@
 <?php
 
-namespace Coatesap\PaymentSense\Message;
+namespace Medialam\PaymentSense\Message;
 
 use Mockery as m;
 use Omnipay\Tests\TestCase;

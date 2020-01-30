@@ -1,9 +1,9 @@
 <?php
 
-namespace Coatesap\PaymentSense;
+namespace Medialam\PaymentSense;
 
-use Coatesap\PaymentSense\Message\CompletePurchaseRequest;
-use Coatesap\PaymentSense\Message\PurchaseRequest;
+use Medialam\PaymentSense\Message\CompletePurchaseRequest;
+use Medialam\PaymentSense\Message\PurchaseRequest;
 use Omnipay\Common\AbstractGateway;
 
 /**
@@ -110,16 +110,31 @@ class Gateway extends AbstractGateway
 
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\Coatesap\PaymentSense\Message\PurchaseRequest', $parameters);
+        if(isset($parameters['cardReference']))
+        {
+            $parameters['action'] = 'SALE';
+            return $this->createRequest('\Medialam\PaymentSense\Message\CrossReferenceTransactionRequest', $parameters);
+        }
+        else
+        {
+            return $this->createRequest('\Medialam\PaymentSense\Message\PurchaseRequest', $parameters);
+        }
+    }
+
+    public function refund(array $parameters = array())
+    {
+        $parameters['action'] = 'REFUND';
+        $parameters['cardReference'] = $parameters['transactionReference'];
+        return $this->createRequest('\Medialam\PaymentSense\Message\CrossReferenceTransactionRequest', $parameters);
     }
 
     public function completePurchase(array $parameters = array())
     {
-        return $this->createRequest('\Coatesap\PaymentSense\Message\CompletePurchaseRequest', $parameters);
+        return $this->createRequest('\Medialam\PaymentSense\Message\CompletePurchaseRequest', $parameters);
     }
 
     public function generatePaymentToken(array $parameters = [])
     {
-        return $this->createRequest('\Coatesap\PaymentSense\Message\GenerateTokenRequest', $parameters);
+        return $this->createRequest('\Medialam\PaymentSense\Message\GenerateTokenRequest', $parameters);
     }
 }

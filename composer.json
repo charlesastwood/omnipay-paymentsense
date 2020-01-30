@@ -1,5 +1,5 @@
 {
-    "name": "digitickets/omnipay-paymentsense",
+    "name": "charlesastwood/omnipay-paymentsense",
     "type": "library",
     "description": "PaymentSense driver for the Omnipay payment processing library",
     "keywords": [
@@ -12,19 +12,20 @@
         "payment",
         "driver"
     ],
-    "homepage": "https://github.com/digitickets/omnipay-paymentsense",
+    "homepage": "https://github.com/charlesastwood/omnipay-paymentsense",
     "license": "MIT",
     "authors": [
         {
-            "name": "Andrew Coates",
-            "email": "andycoatz@gmail.com"
+            "name": "Charles Astwood",
+            "email": "charles@medialam.com"
         }
     ],
     "autoload": {
-        "psr-4": { "Coatesap\\PaymentSense\\" : "src/" }
+        "psr-4": { "Medialam\\PaymentSense\\" : "src/" }
     },
     "require": {
-        "omnipay/common": "3.*"
+        "omnipay/common": "3.*",
+        "ext-simplexml": "*"
     },
     "require-dev": {
         "guzzle/plugin-mock": "~3.1",
