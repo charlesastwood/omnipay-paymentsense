@@ -124,6 +124,6 @@ class GenerateTokenRequest extends AbstractRequest
 
         $httpResponse = $this->httpClient->request('POST', $endpoint, $headers, json_encode($data));
 
-        return $this->response = new Response($this, $httpResponse->getBody()->getContents(), $httpResponse->getHeaders());
+        return $this->response = new JsonResponse($this, $httpResponse->getBody()->getContents(), $httpResponse->getHeaders());
     }
 }

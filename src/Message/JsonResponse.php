@@ -2,7 +2,6 @@
 
 namespace Medialam\PaymentSense\Message;
 
-use DOMDocument;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
@@ -11,19 +10,15 @@ use Omnipay\Common\Message\RequestInterface;
 /**
  * PaymentSense Response
  */
-class Response extends AbstractResponse implements RedirectResponseInterface
+class JsonResponse extends AbstractResponse implements RedirectResponseInterface
 {
     public function __construct(RequestInterface $request, $data)
     {
         $this->request = $request;
 
-        // we only care about the content of the soap:Body element
-        $responseDom = new DOMDocument;
-        $responseDom->loadXML($data);
-        $this->data = simplexml_import_dom($responseDom->documentElement->firstChild->firstChild);
+        $this->data = json_decode($data);
 
-        $resultElement = $this->getResultElement();
-        if (!isset($resultElement->StatusCode)) {
+        if (!isset($this->data) || empty($this->data)) {
             throw new InvalidResponseException;
         }
     }
