@@ -25,6 +25,7 @@
     },
     "require": {
         "omnipay/common": "^3",
+<<<<<<< HEAD
         "ext-simplexml": "*",
     },
     "require-dev": {
@@ -37,6 +38,16 @@
         "test": "vendor/bin/phpunit",
         "check-style": "phpcs -p --standard=PSR2 src/",
         "fix-style": "phpcbf -p --standard=PSR2 src/"
+=======
+        "ext-simplexml": "*"
+    },
+    "require-dev": {
+        "guzzle/plugin-mock": "^3",
+        "mockery/mockery": "~0.8",
+        "omnipay/tests": "^3",
+        "phpunit/phpunit": "~3.7.16",
+        "squizlabs/php_codesniffer": "^3"
+>>>>>>> develop
     },
     "minimum-stability": "dev",
     "prefer-stable": true
