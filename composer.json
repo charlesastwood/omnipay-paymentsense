@@ -25,7 +25,7 @@
     },
     "require": {
         "omnipay/common": "^3",
-        "ext-simplexml": "*",
+        "ext-simplexml": "*"
     },
     "require-dev": {
         "guzzle/plugin-mock": "^3",

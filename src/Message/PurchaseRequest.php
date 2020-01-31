@@ -34,6 +34,26 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('password', $value);
     }
 
+    public function getPreSharedKey()
+    {
+        return $this->getParameter('preSharedKey');
+    }
+
+    public function setPreSharedKey($value)
+    {
+        return $this->setParameter('preSharedKey', $value);
+    }
+
+    public function getJWTToken()
+    {
+        return $this->getParameter('JWTToken');
+    }
+
+    public function setJWTToken($value)
+    {
+        return $this->setParameter('JWTToken', $value);
+    }
+
     public function getData()
     {
         $this->validate('amount', 'card');

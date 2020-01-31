@@ -30,6 +30,11 @@ class GatewayTest extends GatewayTestCase
                 'startYear' => '2013',
             )),
         );
+
+        $this->refundOptions = array(
+            'amount' => '10.00',
+            'transactionReference' => '130215141054377801316798'
+        );
     }
 
     public function testPurchase()
@@ -53,7 +58,33 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('Input variable errors', $response->getMessage());
     }
 
-    public function getFutureYear()
+//    public function testSupportsRefund()
+//    {
+//        $this->setMockHttpResponse('RefundSuccess.txt');
+//        $response = $this->gateway->supportsRefund();
+//
+//        $this->assertTrue($response);
+//    }
+
+//    public function testRefundParameters()
+//    {
+//        $this->setMockHttpResponse('RefundSuccess.txt');
+//        $response = $this->gateway->refund($this->refundOptions)->send();
+//
+//        $this->assertEquals('130215141054377801316798', $response->getTransactionReference());
+//    }
+//
+//    public function testRefund()
+//    {
+//        $this->setMockHttpResponse('RefundSuccess.txt');
+//
+//        $response = $this->gateway->refund($this->refundOptions)->send();
+//
+//        $this->assertTrue($response->isSuccessful());
+//        $this->assertEquals('130215141054377801316798', $response->getTransactionReference());
+//    }
+
+    private function getFutureYear()
     {
         $now = new DateTime();
         $now->add(new DateInterval('P1Y'));
