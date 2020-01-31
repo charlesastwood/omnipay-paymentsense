@@ -70,8 +70,7 @@ class CrossReferenceTransactionRequest extends AbstractRequest
         $data->PaymentMessage->TransactionDetails->MessageDetails['TransactionType'] = $this->getAction();
         $data->PaymentMessage->TransactionDetails->MessageDetails['CrossReference'] = $this->getCardReference();
 
-        if($this->getCard())
-        {
+        if ($this->getCard()) {
             $this->getCard()->validate();
             $data->PaymentMessage->OverrideCardDetails->CardName = $this->getCard()->getName();
             $data->PaymentMessage->OverrideCardDetails->CardNumber = $this->getCard()->getNumber();
@@ -92,8 +91,6 @@ class CrossReferenceTransactionRequest extends AbstractRequest
             $data->PaymentMessage->CustomerDetails->BillingAddress->City = $this->getCard()->getCity();
             $data->PaymentMessage->CustomerDetails->BillingAddress->PostCode = $this->getCard()->getPostcode();
             $data->PaymentMessage->CustomerDetails->BillingAddress->State = $this->getCard()->getState();
-            // requires numeric country code
-            // $data->PaymentMessage->CustomerDetails->BillingAddress->CountryCode = $this->getCard()->getCountryNumeric;
         }
         $data->PaymentMessage->CustomerDetails->CustomerIPAddress = $this->getClientIp();
 
@@ -116,7 +113,7 @@ class CrossReferenceTransactionRequest extends AbstractRequest
         // post to Cardsave
         $headers = array(
             'Content-Type' => 'text/xml; charset=utf-8',
-            'SOAPAction' => $this->namespace.$data->getName());
+            'SOAPAction' => $this->namespace . $data->getName());
 
         $httpResponse = $this->httpClient->request('POST', $this->endpoint, $headers, $document->saveXML());
 

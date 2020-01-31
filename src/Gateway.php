@@ -2,8 +2,6 @@
 
 namespace Medialam\PaymentSense;
 
-use Medialam\PaymentSense\Message\CompletePurchaseRequest;
-use Medialam\PaymentSense\Message\PurchaseRequest;
 use Omnipay\Common\AbstractGateway;
 
 /**
@@ -108,25 +106,35 @@ class Gateway extends AbstractGateway
         return $this->setParameter('JWTToken', $value);
     }
 
+    public function getTransactionReference()
+    {
+        return $this->getParameter('transactionReference');
+    }
+
+    public function setTransactionReference($value)
+    {
+        return $this->setParameter('transactionReference', $value);
+    }
+
     public function purchase(array $parameters = array())
     {
-        if(isset($parameters['cardReference']))
-        {
+        if (isset($parameters['cardReference'])) {
             $parameters['action'] = 'SALE';
             return $this->createRequest('\Medialam\PaymentSense\Message\CrossReferenceTransactionRequest', $parameters);
-        }
-        else
-        {
+        } else {
             return $this->createRequest('\Medialam\PaymentSense\Message\PurchaseRequest', $parameters);
         }
     }
 
-    public function refund(array $parameters = array())
-    {
-        $parameters['action'] = 'REFUND';
-        $parameters['cardReference'] = $parameters['transactionReference'];
-        return $this->createRequest('\Medialam\PaymentSense\Message\CrossReferenceTransactionRequest', $parameters);
-    }
+    //    public function refund(array $parameters = array())
+    //    {
+    //        $parameters['action'] = 'REFUND';
+    //        $parameters['cardReference'] = $parameters['transactionReference'];
+    //        return $this->createRequest(
+    //'\Medialam\PaymentSense\Message\CrossReferenceTransactionRequest',
+    // $parameters
+    //);
+    //    }
 
     public function completePurchase(array $parameters = array())
     {
