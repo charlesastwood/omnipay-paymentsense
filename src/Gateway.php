@@ -118,8 +118,7 @@ class Gateway extends AbstractGateway
 
     public function purchase(array $parameters = array())
     {
-        if(isset($parameters['cardReference']))
-        {
+        if(isset($parameters['cardReference'])) {
             $parameters['action'] = 'SALE';
             return $this->createRequest('\Medialam\PaymentSense\Message\CrossReferenceTransactionRequest', $parameters);
         }
@@ -129,12 +128,12 @@ class Gateway extends AbstractGateway
         }
     }
 
-//    public function refund(array $parameters = array())
-//    {
-//        $parameters['action'] = 'REFUND';
-//        $parameters['cardReference'] = $parameters['transactionReference'];
-//        return $this->createRequest('\Medialam\PaymentSense\Message\CrossReferenceTransactionRequest', $parameters);
-//    }
+    //    public function refund(array $parameters = array())
+    //    {
+    //        $parameters['action'] = 'REFUND';
+    //        $parameters['cardReference'] = $parameters['transactionReference'];
+    //        return $this->createRequest('\Medialam\PaymentSense\Message\CrossReferenceTransactionRequest', $parameters);
+    //    }
 
     public function completePurchase(array $parameters = array())
     {

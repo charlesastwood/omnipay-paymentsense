@@ -18,7 +18,8 @@ class GatewayTest extends GatewayTestCase
         $this->options = array(
             'amount' => '10.00',
             'returnUrl' => 'https://www.example.com/return',
-            'card' => new CreditCard(array(
+            'card' => new CreditCard(
+                array(
                 'firstName' => 'Example',
                 'lastName' => 'User',
                 'number' => '4111111111111111',
@@ -28,7 +29,8 @@ class GatewayTest extends GatewayTestCase
                 'issueNumber' => '5',
                 'startMonth' => '4',
                 'startYear' => '2013',
-            )),
+                )
+            ),
         );
 
         $this->refundOptions = array(
@@ -58,31 +60,31 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('Input variable errors', $response->getMessage());
     }
 
-//    public function testSupportsRefund()
-//    {
-//        $this->setMockHttpResponse('RefundSuccess.txt');
-//        $response = $this->gateway->supportsRefund();
-//
-//        $this->assertTrue($response);
-//    }
+    //    public function testSupportsRefund()
+    //    {
+    //        $this->setMockHttpResponse('RefundSuccess.txt');
+    //        $response = $this->gateway->supportsRefund();
+    //
+    //        $this->assertTrue($response);
+    //    }
 
-//    public function testRefundParameters()
-//    {
-//        $this->setMockHttpResponse('RefundSuccess.txt');
-//        $response = $this->gateway->refund($this->refundOptions)->send();
-//
-//        $this->assertEquals('130215141054377801316798', $response->getTransactionReference());
-//    }
-//
-//    public function testRefund()
-//    {
-//        $this->setMockHttpResponse('RefundSuccess.txt');
-//
-//        $response = $this->gateway->refund($this->refundOptions)->send();
-//
-//        $this->assertTrue($response->isSuccessful());
-//        $this->assertEquals('130215141054377801316798', $response->getTransactionReference());
-//    }
+    //    public function testRefundParameters()
+    //    {
+    //        $this->setMockHttpResponse('RefundSuccess.txt');
+    //        $response = $this->gateway->refund($this->refundOptions)->send();
+    //
+    //        $this->assertEquals('130215141054377801316798', $response->getTransactionReference());
+    //    }
+    //
+    //    public function testRefund()
+    //    {
+    //        $this->setMockHttpResponse('RefundSuccess.txt');
+    //
+    //        $response = $this->gateway->refund($this->refundOptions)->send();
+    //
+    //        $this->assertTrue($response->isSuccessful());
+    //        $this->assertEquals('130215141054377801316798', $response->getTransactionReference());
+    //    }
 
     private function getFutureYear()
     {
