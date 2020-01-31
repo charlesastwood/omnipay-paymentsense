@@ -91,8 +91,6 @@ class CrossReferenceTransactionRequest extends AbstractRequest
             $data->PaymentMessage->CustomerDetails->BillingAddress->City = $this->getCard()->getCity();
             $data->PaymentMessage->CustomerDetails->BillingAddress->PostCode = $this->getCard()->getPostcode();
             $data->PaymentMessage->CustomerDetails->BillingAddress->State = $this->getCard()->getState();
-            // requires numeric country code
-            // $data->PaymentMessage->CustomerDetails->BillingAddress->CountryCode = $this->getCard()->getCountryNumeric;
         }
         $data->PaymentMessage->CustomerDetails->CustomerIPAddress = $this->getClientIp();
 
