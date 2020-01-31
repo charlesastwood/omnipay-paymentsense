@@ -95,7 +95,7 @@ class PurchaseRequest extends AbstractRequest
             'Content-Type' => 'text/xml; charset=utf-8',
             'SOAPAction' => $this->namespace.$data->getName());
 
-        $httpResponse = $this->httpClient->post($this->endpoint, $headers, $document->saveXML())->send();
+        $httpResponse = $this->httpClient->request('POST', $this->endpoint, $headers, $document->saveXML());
 
         return $this->response = new Response($this, $httpResponse->getBody());
     }
